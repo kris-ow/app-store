@@ -1,0 +1,23 @@
+# F-Droid repo config. Run `fdroid update` from this directory to refresh
+# the index after dropping new APKs into ./repo/. CI does this automatically.
+#
+# repo_url MUST exactly match where the index will be served. Once a phone
+# has added this repo, changing repo_url means re-adding it.
+
+repo_url: https://kris-ow.github.io/app-store/fdroid/repo
+repo_name: Krzysztof's personal app store
+repo_description: >-
+  Personal Android apps built with Claude Code. Not for general use.
+
+# Keep N old versions in archive/ for rollback. 0 = disable archive.
+archive_older: 3
+
+# Repo INDEX signing — separate from APK signing in concept, same keystore in
+# practice. Env vars are populated by CI from GitHub Actions secrets.
+keystore: $KEYSTORE_PATH
+keystorepass: $KEYSTORE_PASSWORD
+keypass: $KEY_PASSWORD
+keystorealias: $KEY_ALIAS
+
+# Don't try to rebuild apps from source — we ship pre-built signed APKs.
+update_stats: false
